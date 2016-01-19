@@ -3,7 +3,7 @@
  * @author Artur Doruch <arturdoruch@interia.pl>
  */
 
-namespace ArturDoruch\Tool\HttpCleaner;
+namespace ArturDoruch\Tool\HtmlCleaner;
 
 use ArturDoruch\Util\HtmlUtils;
 

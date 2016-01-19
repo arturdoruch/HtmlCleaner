@@ -13,7 +13,7 @@
         "arturdoruch/util": "~1.0"
     },
     "autoload": {
-        "psr-4" : { "ArturDoruch\\Tool\\HttpCleaner\\" : "src/" }
+        "psr-4" : { "ArturDoruch\\Tool\\HtmlCleaner\\" : "src/" }
     },
     "repositories": [
         {

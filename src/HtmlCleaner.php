@@ -3,7 +3,7 @@
  * @author Artur Doruch <arturdoruch@interia.pl>
  */
 
-namespace ArturDoruch\Tool\HttpCleaner;
+namespace ArturDoruch\Tool\HtmlCleaner;
 
 /**
  * Cleans html code from unwanted elements.
