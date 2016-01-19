@@ -1,0 +1,25 @@
+{
+    "name": "arturdoruch/tool-http-cleaner",
+    "description": "Tool for cleaning html code from unwanted elements",
+    "keywords": ["clean html", "html cleaner", "html minify"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artur Doruch",
+            "email": "arturdoruch@interia.pl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "arturdoruch/util": "~1.0"
+    },
+    "autoload": {
+        "psr-4" : { "ArturDoruch\\Tool\\HttpCleaner\\" : "src/" }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/arturdoruch/Util"
+        }
+    ]
+}
