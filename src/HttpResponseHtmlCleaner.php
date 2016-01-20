@@ -6,7 +6,6 @@
 namespace ArturDoruch\Tool\HtmlCleaner;
 
 use ArturDoruch\Http\Message\Response;
-use ArturDoruch\Util\HtmlUtils;
 
 /**
  * Cleans HTTP response body with a content type "text/html" from unwanted elements.
@@ -14,7 +13,7 @@ use ArturDoruch\Util\HtmlUtils;
  * This cleaner is dedicated to work with HTTP client "arturdoruch/http"
  * @link https://github.com/arturdoruch/Http/
  */
-class HttpResponseHtmlCleaner
+class HttpResponseHtmlCleaner extends AbstractHtmlCleaner
 {
     /**
      * @var HtmlCleanerInterface
@@ -42,24 +41,22 @@ class HttpResponseHtmlCleaner
     /**
      * Cleans HTTP response body with a content type "text/html" from unwanted elements.
      *
-     * @param Response   $response
-     * @param array|null $removeElements
-     * The array with names of html elements to remove.
-     * If array is empty, non of elements will be removed.
-     * If null, the default elements will be removed: comment, script, style.
-     *
-     * Available elements names and their meaning:
-     *  - head        head tag with html tag. Only body tag will be left
-     *  - comment     comments except IE hacks
-     *  - script      script tags
-     *  - style       style elements
-     *  - img         img tags and input tags with type of image
-     *  - input_meta  input and meta tags, except input with type of image
-     *  - all         all elements mentioned above
+     * @param Response   $response      The HTTP response object
+     * @param array|null $removeNoise   The list of unwanted html elements to remove.
+     *                                  If array is empty, non of elements will be removed.
+     *                                  If null given, the default elements will be removed: comment, script, style.
+     *                                  Available elements names and their meaning:
+     *                                   - head        head tag with html tag. Only body tag will be left
+     *                                   - comment     comments except IE hacks
+     *                                   - script      script tags
+     *                                   - style       style elements
+     *                                   - img         img tags and input tags with type of image
+     *                                   - input_meta  input and meta tags, except input with type of image
+     *                                   - all         all elements mentioned above
      * @param bool       $minify
      * @param bool       $removeEmptyLines
      */
-    public function clean(Response $response, array $removeElements = null, $minify = false, $removeEmptyLines = true)
+    public function clean(Response $response, array $removeNoise = null, $minify = false, $removeEmptyLines = true)
     {
         if (strpos($response->getContentType(), 'text/html') !== 0) {
             return;
@@ -67,11 +64,7 @@ class HttpResponseHtmlCleaner
 
         $html = $response->getBody();
 
-        HtmlUtils::removeNoise($html, $removeElements, $removeEmptyLines);
-
-        if ($minify === true) {
-            HtmlUtils::minify($html);
-        }
+        $this->cleanHtml($html, $removeNoise, $minify, $removeEmptyLines);
 
         if ($this->cleaner) {
             $this->cleaner->clean($html, $response->getEffectiveUrl(), $response->getStatusCode());
