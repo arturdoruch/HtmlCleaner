@@ -5,10 +5,12 @@
 
 namespace ArturDoruch\Tool\HtmlCleaner;
 
+use ArturDoruch\Util\HtmlUtils;
+
 /**
  * Cleans html code from unwanted elements.
  */
-class HtmlCleaner extends AbstractHtmlCleaner
+class HtmlCleaner
 {
     /**
      * @var HtmlCleanerInterface
@@ -55,7 +57,11 @@ class HtmlCleaner extends AbstractHtmlCleaner
      */
     public function clean(&$html, array $removeElements = null, $minify = false, $removeEmptyLines = true)
     {
-        $this->_clean($html, $removeElements, $minify, $removeEmptyLines);
+        HtmlUtils::removeNoise($html, $removeElements, $removeEmptyLines);
+
+        if ($minify === true) {
+            HtmlUtils::minify($html);
+        }
 
         if ($this->cleaner) {
             $this->cleaner->clean($html);

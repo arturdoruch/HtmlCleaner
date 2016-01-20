@@ -6,6 +6,7 @@
 namespace ArturDoruch\Tool\HtmlCleaner;
 
 use ArturDoruch\Http\Message\Response;
+use ArturDoruch\Util\HtmlUtils;
 
 /**
  * Cleans HTTP response body with a content type "text/html" from unwanted elements.
@@ -13,7 +14,7 @@ use ArturDoruch\Http\Message\Response;
  * This cleaner is dedicated to work with HTTP client "arturdoruch/http"
  * @link https://github.com/arturdoruch/Http/
  */
-class HttpResponseHtmlCleaner extends AbstractHtmlCleaner
+class HttpResponseHtmlCleaner
 {
     /**
      * @var HtmlCleanerInterface
@@ -65,7 +66,12 @@ class HttpResponseHtmlCleaner extends AbstractHtmlCleaner
         }
 
         $html = $response->getBody();
-        $this->_clean($html, $removeElements, $minify, $removeEmptyLines);
+
+        HtmlUtils::removeNoise($html, $removeElements, $removeEmptyLines);
+
+        if ($minify === true) {
+            HtmlUtils::minify($html);
+        }
 
         if ($this->cleaner) {
             $this->cleaner->clean($html, $response->getEffectiveUrl(), $response->getStatusCode());
