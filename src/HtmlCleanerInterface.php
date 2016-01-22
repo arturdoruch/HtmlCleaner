@@ -1,12 +1,11 @@
 <?php
-/**
- * @author Artur Doruch <arturdoruch@interia.pl>
- */
 
 namespace ArturDoruch\Tool\HtmlCleaner;
 
 /**
  * Provides the custom way of cleaning html code.
+ *
+ * @author Artur Doruch <arturdoruch@interia.pl>
  */
 interface HtmlCleanerInterface
 {

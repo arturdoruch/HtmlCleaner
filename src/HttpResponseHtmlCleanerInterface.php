@@ -1,13 +1,11 @@
 <?php
-/**
- * @author Artur Doruch <arturdoruch@interia.pl>
- */
 
 namespace ArturDoruch\Tool\HtmlCleaner;
 
 /**
- * Provides the custom way of cleaning HTTP response body with
- * a content type "text/html".
+ * Provides the custom way of cleaning HTTP response body with a content type "text/html".
+ *
+ * @author Artur Doruch <arturdoruch@interia.pl>
  */
 interface HttpResponseHtmlCleanerInterface
 {

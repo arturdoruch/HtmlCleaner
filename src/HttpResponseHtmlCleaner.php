@@ -1,7 +1,4 @@
 <?php
-/**
- * @author Artur Doruch <arturdoruch@interia.pl>
- */
 
 namespace ArturDoruch\Tool\HtmlCleaner;
 
@@ -12,6 +9,8 @@ use ArturDoruch\Http\Message\Response;
  *
  * This cleaner is dedicated to work with HTTP client "arturdoruch/http"
  * @link https://github.com/arturdoruch/Http/
+ *
+ * @author Artur Doruch <arturdoruch@interia.pl>
  */
 class HttpResponseHtmlCleaner extends AbstractHtmlCleaner
 {

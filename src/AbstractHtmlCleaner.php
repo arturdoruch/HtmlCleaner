@@ -1,12 +1,12 @@
 <?php
-/**
- * @author Artur Doruch <arturdoruch@interia.pl>
- */
 
 namespace ArturDoruch\Tool\HtmlCleaner;
 
 use ArturDoruch\Util\HtmlUtils;
 
+/**
+ * @author Artur Doruch <arturdoruch@interia.pl>
+ */
 abstract class AbstractHtmlCleaner
 {
     /**
